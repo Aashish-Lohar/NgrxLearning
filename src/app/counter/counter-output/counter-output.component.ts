@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { CounterState } from '../state/counter.state';
 import { Observable } from 'rxjs';
+import { getCounter } from '../state/counter.selector';
 
 @Component({
   selector: 'app-counter-output',
@@ -10,13 +11,15 @@ import { Observable } from 'rxjs';
 })
 export class CounterOutputComponent{
   counter!:number;
-  counter$!:Observable<{counter:number}>;
+  counter$!:Observable<number>;
   constructor(private store:Store<{counter:CounterState}>){}
 
   ngOnInit(){
-    // this.store.select('counter').subscribe((data)=>{
-    //   this.counter = data.counter;
+    // this.store.select(getCounter).subscribe((data)=>{
+    //   console.log('counter observable called');
+      
+    //   this.counter = data;
     // })
-    this.counter$ = this.store.select('counter');
+    this.counter$ = this.store.select(getCounter);
   }
 }

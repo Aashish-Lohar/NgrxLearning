@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store"
 import { initialState } from "./counter.state"
-import { customIncrement, decrement, increment, reset } from "./counter.action"
+import { changeProjectName, customIncrement, decrement, increment, reset } from "./counter.action"
 
 const _counterReducer = createReducer(
     initialState,
@@ -26,6 +26,12 @@ const _counterReducer = createReducer(
         return {
             ...state,
             counter:state.counter +action.count
+        }
+    }),
+    on(changeProjectName,(state)=>{
+        return {
+            ...state,
+            projectName:'NgRX learning'
         }
     })
      )
